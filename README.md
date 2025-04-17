@@ -146,14 +146,14 @@
 
 ## 🔨 프로젝트 구조
 
-<img width="1068" alt="image" src="https://github.com/dudtlr/TGIA-Back/assets/95243456/d3ebb8f3-230e-49df-b63f-d097955334df">
+<img width="1206" alt="image" src="https://github.com/user-attachments/assets/bee3c82e-997b-4d28-bd7c-d15b320bf6f1" />
 
 <br>
 
 ## 🔨 ERD 설계도
 
+<img width="695" alt="image" src="https://github.com/user-attachments/assets/3429f391-534a-455f-a5c5-10a52c6fb2ec" />
 
-![Untitled](https://github.com/dudtlr/TGIA-Back/assets/95243456/939d7e28-6f8c-4355-88d8-fb232dada81d)
 
 <br>
 
@@ -165,21 +165,26 @@
 
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/2608cb05-b2c4-4dba-96e9-9bdf1bf52b6c)
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/79c698a0-2a1c-4dbf-a7ee-7f5bb55f4260)
+<img width="1192" alt="image" src="https://github.com/user-attachments/assets/a52e2930-9d3d-4707-9ffe-7d6f43fad0c0" />
+
+
+<br>
 
 
 <br>
 
 -  (검색 화면) (키워드,거래장소,학부,카테고리,정렬(최신,좋아요,조회)) 조건에 맞는 게시글을 보여준다.
--  키워드 검색 시 게시글 제목 or 내용에 키워드가 포함되면 조건에 포함된다.
+-  키워드 검색 시 게시글 제목에 키워드가 포함되면 조건에 포함된다.
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/e2a4c89a-9b7c-42ec-b0fd-77bf797fca4c)
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/65fd7bd7-1d48-430b-9610-ded7500d20e0)
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/9b651727-1d83-46d6-be68-d2312c052aaf)
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/11f94078-1503-49ea-a089-eb8d39871d33)
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/99008798-6131-4e4b-9ca7-4a66e32b1629)
+<img width="1198" alt="image" src="https://github.com/user-attachments/assets/49d2be2a-e47d-4369-892b-1864826ae8a1" />
+
+<img width="1202" alt="image" src="https://github.com/user-attachments/assets/d87b2a13-a8b6-452a-baa0-870a988f6591" />
+
+<img width="1201" alt="image" src="https://github.com/user-attachments/assets/12d26a41-9597-4b12-8c62-f2b41100baf7" />
+<img width="1208" alt="image" src="https://github.com/user-attachments/assets/2e71e461-29ff-48ee-bfac-2fe3c132c1cc" />
+
+<img width="1211" alt="image" src="https://github.com/user-attachments/assets/eae35928-5311-406d-8e24-bfbb6fb32873" />
 
 
 
@@ -187,18 +192,14 @@
 <br>
 <br>
 
-- 검색된 키워드의 횟수를 활용하여 인기검색어 기능 구현
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/d0e548f0-f16c-47c1-b241-3b473841051a)
-
-<br>
 
 ### ✔ 장바구니 
 -   해당 상품이 장바구니에 담김
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/3e63a963-d594-462a-9d5a-f07e2b9574cb)
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/70a4b380-428f-481f-b7cc-f34e12bf8706)
+<img width="1205" alt="image" src="https://github.com/user-attachments/assets/8c12f680-cc89-4f62-b535-cc84c36e5203" />
+
 
 
 <br>
@@ -209,11 +210,9 @@
   
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/2caa76ae-5e9a-4ab6-9dc3-997cd200e1d8)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/7d62af57-7aef-446b-ad63-e40394cd0b5e)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/a9b6ada1-e900-4d98-bf58-ba0951003ba4)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/6710f154-22a6-4f12-ba2d-010384bca5f9)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/52eebfd8-667f-4738-b18f-c8427ce08e7f)
+<img width="1215" alt="image" src="https://github.com/user-attachments/assets/db4aa408-caf6-4050-8de5-4db28fb262e0" />
+
+<img width="1212" alt="image" src="https://github.com/user-attachments/assets/dc878f29-06e5-4b21-9704-c4de8ee65cef" />
 
 
 <br>
@@ -224,8 +223,10 @@
 
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/1d4268da-824f-49d6-8738-424e92594c80)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/5bc7bc25-0586-4658-b9b2-3dbf3de8f7ca)
+<img width="1214" alt="image" src="https://github.com/user-attachments/assets/f06f2389-f7b0-4c65-854b-b770de242bb3" />
+
+<img width="1213" alt="image" src="https://github.com/user-attachments/assets/da5832f9-92ad-467b-a3da-e22bb9c6bfa5" />
+
 
 <br>
 
@@ -234,11 +235,11 @@
 
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/4109282c-c4e3-426c-8a34-7986b0e08e56)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/3b2d7668-1bb1-4ee1-b8aa-2936e0af0959)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/f8fe8242-4f99-48b3-b783-861f469545dc)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/39a6f5d1-e4f5-4239-a52b-a1bdce746fb9)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/272e7e03-f23f-40f0-ab14-126a01ab6969)
+<img width="1199" alt="image" src="https://github.com/user-attachments/assets/1d8526d3-4fd4-4679-a6ba-4001d562f633" />
+
+<img width="1199" alt="image" src="https://github.com/user-attachments/assets/cb23bc38-2986-43a2-999e-1573589a965a" />
+<img width="1211" alt="image" src="https://github.com/user-attachments/assets/dffbc50b-0f95-4a13-b94c-1a21830d58b7" />
+
 
 
 <br>
@@ -248,14 +249,8 @@
 
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/c6cb243b-0ed8-427c-ae77-99b31c2d4916)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/a07df0a1-0bb2-4e68-bb10-22fe055da184)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/3d3b4e84-6388-49c4-a543-dadb790f1a5b)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/f08025cf-dd84-4520-a2c8-0535a6215b71)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/e6e550e1-55a0-4c31-8e11-54348da31abc)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/a8a1be71-6d19-4bd0-b2c4-daf25714c524)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/d0c22087-9cd9-4705-9b3a-25fb76df4114)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/3a2d3a26-7a7f-4260-adc2-df62005e44da)
+<img width="1196" alt="image" src="https://github.com/user-attachments/assets/fefb3e09-bee2-494d-bf5d-21fd26694b63" />
+
 
 
 
@@ -264,8 +259,8 @@
 
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/c5e23da8-a131-4b53-9e1f-2be95561362c)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/5416df41-140b-48e2-888e-c47ff0216a81)
+<img width="1224" alt="image" src="https://github.com/user-attachments/assets/63aaed77-6e2a-4654-a3bd-b9592305b445" />
+
 
 
 <br>
@@ -274,9 +269,9 @@
 - 프로필 탭을 누르면 내 프로필 화면으로 이동하며, 전반적인 정보 확인 및 트랙 설정, 프로필 변경 기능 제공됩니다. 판매 목록, 구매 목록, 찜 목록 등으로 나의 게시글 현황 확인 가능합니다. 트랙 변경을 원할 시 해당 트랙을 선택하여 등록하고 변경 버튼을 누르면 완료됩니다. 이 정보는 게시글 필터링 및 상대방이 내 프로필을 볼 때 활용됩니다.
 
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/438e74f1-b8f4-420e-a525-3cf9db7dae55)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/fdc61e26-4ede-4287-9aa2-0fb73d1baaa3)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/4ba7b8c7-ee7a-4092-a4ce-29f4fbc3015c)
+<img width="1217" alt="image" src="https://github.com/user-attachments/assets/7a6028ce-fe27-43cf-b5ac-45574bbc925a" />
+<img width="1217" alt="image" src="https://github.com/user-attachments/assets/3cb41d3c-78be-4e8b-b78b-4061bf218ce5" />
+
 
 
 
@@ -289,7 +284,8 @@
 
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/fce771f4-1763-43c1-bc49-b8328e19af2b)
+<img width="1211" alt="image" src="https://github.com/user-attachments/assets/4cd6f1d5-0974-4a10-beb9-3d89794f8a3f" />
+
 
 
 
@@ -299,7 +295,8 @@
 
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/063a4ba3-31ed-4641-8b76-bab38663bea9)
+<img width="1203" alt="image" src="https://github.com/user-attachments/assets/5f2c6857-a1d6-4b2d-9a6c-a75defffc4c7" />
+
 
 <br>
 
@@ -308,8 +305,9 @@
 
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/269ebbe8-685e-41b8-b419-43c5441f0528)
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/729e1ee7-345d-449e-b7a3-cb88cf06535b)
+<img width="1201" alt="image" src="https://github.com/user-attachments/assets/d61a26dc-dac5-4e9c-9419-90a15c66439a" />
+<img width="1204" alt="image" src="https://github.com/user-attachments/assets/62496cb8-3a82-46b2-9934-aaa71d2627fd" />
+
 
 
 
@@ -321,8 +319,8 @@
 
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/2d0ab346-329d-4a28-8d10-18e0f9926e97)
-![image](https://github.com/dudtlr/TGIA-Back/assets/116620246/606f2947-5dcf-4d29-8f86-536304760b2a)
+<img width="1198" alt="image" src="https://github.com/user-attachments/assets/3b1283c8-3d6f-4c46-a862-8803c84669d1" />
+
 
 
 
@@ -330,7 +328,8 @@
 - 앱의 전반적인 정보를 보여준다.
 <br>
 
-![image](https://github.com/dudtlr/TGIA-Back/assets/95243456/83d3b27d-9a00-46ac-9a75-e0a56fb8fd8a)
+<img width="1224" alt="image" src="https://github.com/user-attachments/assets/0c292f5c-2ee6-4de0-96a6-1190ad499d91" />
+
 
 <br>
 
