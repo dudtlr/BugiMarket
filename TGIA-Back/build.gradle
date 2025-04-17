@@ -1,0 +1,71 @@
+buildscript {
+	ext {
+		queryDslVersion = "5.0.0"
+	}
+}
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.9'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+}
+
+group = 'capstone'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+	// hibernate sql 쿼리문에서 파라미터가 (?, ?) '?' 가 아니라 실제 데이터를 보여주게한다.
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis' //redis
+	implementation 'org.springframework.data:spring-data-elasticsearch:4.4.12' // es
+
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.1.9'
+	implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin:3.1.9'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+// querydsl 세팅 시작
+def querydslDir = "$buildDir/generated/querydsl"
+querydsl {
+	jpa = true
+	querydslSourcesDir = querydslDir
+}
+sourceSets {
+	main.java.srcDir querydslDir
+}
+configurations {
+	querydsl.extendsFrom compileClasspath
+}
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
+}
+// querydsl 세팅 끝
+
