@@ -1,0 +1,494 @@
+import React, { useState, useEffect, useCallback } from "react";
+import {
+  StyleSheet,
+  SafeAreaView,
+  Dimensions,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Alert,
+  Pressable,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback
+} from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import useStore from "../../../store";
+import IonIcon from "react-native-vector-icons/Ionicons";
+import Axios from "axios";
+
+const { width: vw, height: vh } = Dimensions.get("window");
+
+type MannerReviewPramList = {
+  MannerInfo: undefined;
+};
+type MannerReviewProps = NativeStackScreenProps<
+  MannerReviewPramList,
+  "MannerReview"
+>;
+
+function MannerReview({ navigation, route }: MannerReviewProps) {
+  const { session, url } = useStore();
+  const [sellerName, setSellerName] = useState(route.params.seller_name);
+  const [sellerId, setSellerId] = useState(route.params.seller_Id);
+  const [postId, setPostId] = useState(route.params.post_Id);
+  const [currentIndex, setCurrentIndex] = useState(4);
+  const [score, setScore] = useState(10);
+  const data = ["F", "D", "C0", "C+", "B0", "B+", "A0", "A+"];
+  const [goodPrice, setGoodPrice] = useState(false);
+  const [goodTime, setGoodTime] = useState(false);
+  const [fastResponse, setFastResponse] = useState(false);
+  const [badQuality, setBadQuality] = useState(false);
+  const [noResponse, setNoResponse] = useState(false);
+  const [text, setText] = useState("");
+  const [reDealing, setReDealing] = useState(false);
+  const [announcement, setAnnouncement] = useState(0);
+
+  /** 뒤로 가기 이동 함수 */
+  const goBack = useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
+
+  /** 구매 후기 작성시 점수 조정 함수 */
+  const handleButtonPress = (direction) => {
+    if (direction === "prev") {
+      setCurrentIndex(currentIndex - 1);
+    } else if (direction === "next") {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  useEffect(() => {
+    switch (currentIndex) {
+      case 0:
+        setScore(-15);
+        setReDealing(false);
+        break;
+      case 1:
+        setScore(-5);
+        setReDealing(false);
+        break;
+      case 2:
+        setScore(5);
+        setReDealing(false);
+        break;
+      case 3:
+        setScore(10);
+        setReDealing(false);
+        break;
+      case 4:
+        setScore(15);
+        setReDealing(false);
+        break;
+      case 5:
+        setScore(20);
+        setReDealing(true);
+        break;
+      case 6:
+        setScore(25);
+        setReDealing(true);
+        break;
+      case 7:
+        setScore(30);
+        setReDealing(true);
+        break;
+      default:
+        setScore(0);
+        setReDealing(false);
+        break;
+    }
+  }, [currentIndex]);
+
+  /** 후기 내용 입력 여부 확인 함수 */
+  function submitButton() {
+    if (text === "") {
+      Alert.alert("후기 내용을 입력해야 합니다", "", [
+        { text: "확인", style: "cancel" }
+      ]);
+    } else {
+      Alert.alert("후기 전송", "매너 평가를 완료하시겠습니까?", [
+        { text: "취소", style: "cancel" },
+        { text: "등록", onPress: submitReview }
+      ]);
+    }
+  }
+
+  /** submitButton 함수에서 등록 버튼 클릭시 후기 제출하는 함수 */
+  function submitReview() {
+    const request = {
+      buyerId: session.member_id,
+      sellerId: sellerId,
+      post_id: postId,
+      mannerScore: score,
+      goodPrice: goodPrice,
+      goodTime: goodTime,
+      fastResponse: fastResponse,
+      badQuality: badQuality,
+      noResponse: noResponse,
+      reDealing: reDealing
+    };
+
+    const purchaseReviewDTO = {
+      buyer_id: session.member_id,
+      seller_id: sellerId,
+      review: text,
+      post_id: postId
+    };
+
+    Axios.post(`${url}/manner/set_score`, request)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log("set errer" + error);
+      });
+
+    Axios.post(`${url}/add_purchase_review`, purchaseReviewDTO)
+      .then((res) => {
+        console.log(res);
+        goBack();
+      })
+      .catch((error) => {
+        console.log("review error" + error);
+      });
+  }
+
+  return (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    <SafeAreaView style={styles.safeAreaView}>
+      <View style={styles.topBar}>
+        <TouchableOpacity
+          style={styles.cancelButton}
+          onPress={goBack}
+          activeOpacity={0.5}
+        >
+          <IonIcon name={"chevron-back-sharp"} size={25} />
+        </TouchableOpacity>
+        <Text style={styles.topBarText}>거래 후기 보내기</Text>
+      </View>
+      <View style={styles.messageZone}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.questionText}></Text>
+          <Text style={styles.questionText}>
+            {sellerName}님과 거래가 어떠셨나요?
+          </Text>
+          <Text style={styles.tipText}>거래 선호도는 나만 볼 수 있어요.</Text>
+        </View>
+        <Image
+          source={require("../../assets/heartbugi.png")}
+          style={styles.heartbugi}
+        />
+      </View>
+      <View style={styles.gradeZone}>
+        <Pressable
+          onPress={() => handleButtonPress("prev")}
+          style={styles.gradeControlButton}
+          disabled={currentIndex === 0 ? true : false}
+        >
+          <IonIcon
+            name={"chevron-back-sharp"}
+            size={50}
+            style={{ color: currentIndex > 0 ? "black" : "lightgrey" }}
+          />
+        </Pressable>
+        <View style={styles.gradeTextSpace}>
+          <Text style={styles.gradeText}>{data[currentIndex]}</Text>
+        </View>
+        <Pressable
+          onPress={() => handleButtonPress("next")}
+          style={styles.gradeControlButton}
+          disabled={currentIndex === data.length - 1 ? true : false}
+        >
+          <IonIcon
+            name={"chevron-forward-sharp"}
+            size={50}
+            style={{
+              color: currentIndex < data.length - 1 ? "black" : "lightgrey"
+            }}
+          />
+        </Pressable>
+      </View>
+
+      <View style={styles.reviewZone}>
+        {goodPrice ? (
+          <Pressable
+            onPress={() => {
+              setGoodPrice(!goodPrice);
+              setAnnouncement(announcement - 1);
+            }}
+            style={[styles.reviewItem, { backgroundColor: "#3064e7" }]}
+          >
+            <Text style={styles.reviewTextTrue}>
+              좋은 상품을 저렴하게 판매해요
+            </Text>
+          </Pressable>
+        ) : (
+          <Pressable
+            onPress={() => {
+              setGoodPrice(!goodPrice);
+              setAnnouncement(announcement + 1);
+            }}
+            style={styles.reviewItem}
+          >
+            <Text style={styles.reviewTextFalse}>
+              좋은 상품을 저렴하게 판매해요
+            </Text>
+          </Pressable>
+        )}
+        {goodTime ? (
+          <Pressable
+            onPress={() => {
+              setGoodTime(!goodTime);
+              setAnnouncement(announcement - 1);
+            }}
+            style={[styles.reviewItem, { backgroundColor: "#3064e7" }]}
+          >
+            <Text style={styles.reviewTextTrue}>시간 약속을 잘 지켜요</Text>
+          </Pressable>
+        ) : (
+          <Pressable
+            onPress={() => {
+              setGoodTime(!goodTime);
+              setAnnouncement(announcement + 1);
+            }}
+            style={styles.reviewItem}
+          >
+            <Text style={styles.reviewTextFalse}>시간 약속을 잘 지켜요</Text>
+          </Pressable>
+        )}
+        {fastResponse ? (
+          <Pressable
+            onPress={() => {
+              setFastResponse(!fastResponse);
+              setAnnouncement(announcement - 1);
+            }}
+            style={[styles.reviewItem, { backgroundColor: "#3064e7" }]}
+          >
+            <Text style={styles.reviewTextTrue}>응답 속도가 빨라요</Text>
+          </Pressable>
+        ) : (
+          <Pressable
+            onPress={() => {
+              setFastResponse(!fastResponse);
+              setAnnouncement(announcement + 1);
+            }}
+            style={styles.reviewItem}
+          >
+            <Text style={styles.reviewTextFalse}>응답 속도가 빨라요</Text>
+          </Pressable>
+        )}
+        {badQuality ? (
+          <Pressable
+            onPress={() => {
+              setBadQuality(!badQuality);
+              setAnnouncement(announcement + 1);
+            }}
+            style={[styles.reviewItem, { backgroundColor: "#d70b0ba2" }]}
+          >
+            <Text style={styles.reviewTextTrue}>상품에 하자가 있어요</Text>
+          </Pressable>
+        ) : (
+          <Pressable
+            onPress={() => {
+              setBadQuality(!badQuality);
+              setAnnouncement(announcement - 1);
+            }}
+            style={styles.reviewItem}
+          >
+            <Text style={styles.reviewTextFalse}>상품에 하자가 있어요</Text>
+          </Pressable>
+        )}
+        {noResponse ? (
+          <Pressable
+            onPress={() => {
+              setNoResponse(!noResponse);
+              setAnnouncement(announcement + 1);
+            }}
+            style={[styles.reviewItem, { backgroundColor: "#d70b0ba2" }]}
+          >
+            <Text style={styles.reviewTextTrue}>연락이 잘 안 돼요</Text>
+          </Pressable>
+        ) : (
+          <Pressable
+            onPress={() => {
+              setNoResponse(!noResponse);
+              setAnnouncement(announcement - 1);
+            }}
+            style={styles.reviewItem}
+          >
+            <Text style={styles.reviewTextFalse}>연락이 잘 안 돼요</Text>
+          </Pressable>
+        )}
+      </View>
+      <View style={styles.guideZone}>
+        {announcement === 0 ? (
+          <Text style={styles.guideTextA}>
+            {sellerName}님에게 거래 후기를 남겨보세요.
+          </Text>
+        ) : announcement > 0 ? (
+          <Text style={styles.guideTextA}>
+            {sellerName}님에게 따듯한 거래 경험을 남겨보세요.
+          </Text>
+        ) : (
+          <Text style={styles.guideTextA}>
+            {sellerName}님에게 아쉬웠던 점을 남겨보세요.
+          </Text>
+        )}
+        <Text style={styles.guideTextB}>
+          작성한 내용은 상대방 프로필에 공개됩니다.
+        </Text>
+      </View>
+      <View style={styles.textBar}>
+        <TextInput
+          multiline={true}
+          style={styles.textInput}
+          placeholder={"내용을 입력해주세요"}
+          placeholderTextColor={"lightgrey"}
+          value={text}
+          onChangeText={setText}
+          textAlignVertical="top"
+        />
+      </View>
+      <Pressable onPress={submitButton} style={styles.submitButton}>
+        <Text style={styles.submitButtonText}>전송</Text>
+      </Pressable>
+    </SafeAreaView>
+    </TouchableWithoutFeedback>
+  );
+}
+
+const styles = StyleSheet.create({
+  safeAreaView: {
+    backgroundColor: "white",
+    flex: 1
+  },
+  topBar: {
+    borderBottomWidth: 0.2,
+    borderColor: "gray",
+    height: vh / 18,
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  topBarText: {
+    fontSize: 18,
+    fontWeight: "600"
+  },
+  cancelButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: vw / 35,
+    paddingRight: vw / 35,
+    height: vh / 17.5
+  },
+  messageZone: {
+    flex: 0.45,
+    height: vh * 0.2,
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: vw * 0.04,
+    borderBottomWidth: 0.4,
+    borderColor: "gray"
+  },
+  questionText: {
+    fontSize: 18
+  },
+  tipText: {
+    color: "gray",
+    marginTop: vh * 0.01
+  },
+  heartbugi: {
+    flex: 0.3,
+    height: vh / 7
+  },
+  gradeZone: {
+    flex: 0.5,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  gradeControlButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: vw * 0.05,
+    paddingVertical: vh * 0.015
+  },
+  gradeControlText: {
+    fontSize: 80
+  },
+  gradeTextSpace: {
+    flex: 1,
+    alignItems: "center"
+  },
+  gradeText: {
+    fontSize: 90,
+    color: "#3064e7",
+    fontWeight: "700"
+  },
+  reviewZone: {
+    flex: 1,
+    lignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: vw * 0.05
+  },
+  reviewItem: {
+    flex: 0.2,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: vh * 0.009,
+    backgroundColor: "#DDDDDD",
+    borderRadius: 60
+  },
+  reviewTextFalse: {
+    fontSize: 16
+  },
+  reviewTextTrue: {
+    fontSize: 16,
+    color: "white"
+  },
+  guideZone: {
+    flex: 0.4,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  guideTextA: {
+    fontSize: 18,
+    fontWeight: "500",
+    marginBottom: 8
+  },
+  guideTextB: {
+    fontSize: 16,
+    color: "gray"
+  },
+  textBar: {
+    height: vh * 0.15,
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: "#EDEDED",
+    paddingVertical: vh * 0.01,
+    marginHorizontal: vw * 0.05
+  },
+  textInput: {
+    justifyContent: "center",
+    alignSelf: "flex-start",
+    width: vw - vw / 12.5,
+    height: vh * 0.14,
+    textAlignVertical: "top",
+    color: "black"
+  },
+  submitButton: {
+    flex: 0.15,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: vh * 0.015,
+    marginHorizontal: vw * 0.33,
+    backgroundColor: "#1440af",
+    borderRadius: 20
+  },
+  submitButtonText: {
+    fontSize: 16,
+    color: "white"
+  }
+});
+
+export default MannerReview;
